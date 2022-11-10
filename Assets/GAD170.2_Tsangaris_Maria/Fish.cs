@@ -29,18 +29,10 @@ namespace MariaTsangaris
         public GameObject newFishButton;
 
 
-        public void Initialize()
+    public void Initialize()
         {
-            // We want to set up all 3 characters
-            // Using an if statement, we can say:
-            // Use if statements
-            // if variable == 0, set up Barry Gee
-            // if variable == 1, set up Peter Parker
-            // if variable == 2, set up Bruce Wayne
-            // if statement or
-            // switch statement
-
             switch (chosenFish)
+                // Equivalent of an if-else statement, and is easier to use words with.
             {
                 case FishList.Undefined:
                     Debug.Log("Fish undefined. Set its enum in the inspector!");
@@ -92,7 +84,8 @@ namespace MariaTsangaris
 
         public void SummonFish()
         {
-            currentChosenFish = Random.Range(1, 10);
+            currentChosenFish = Random.Range(1, 11);
+            // This randomises the fish by their assigned number.
             if (currentChosenFish == 1)
             {
                 chosenFish = FishList.Dorado;
@@ -136,7 +129,9 @@ namespace MariaTsangaris
 
 
             randomFishValue = Random.Range(-2, 2);
+            // Randomises a number from -2 to +2 to be added or subtracted from the current fish value.
             randomFishLength = Random.Range(-10, 10);
+            // Randomises a number from -2 to +2 to be added or subtracted from the current fish length.
             Debug.Log(randomFishValue);
             Debug.Log(randomFishLength);
 
@@ -146,15 +141,18 @@ namespace MariaTsangaris
             addedFishValue += randomFishValue;
             float.TryParse(fishLength, out addedFishLength);
             addedFishLength += randomFishLength;
+            // This turns a string of the fish value into a float.
+            // This also combines the randomFishValue/Length with the addedFishValue/Length
 
             currentFishName.text = fishName;
             currentFishValue.text = addedFishValue.ToString("0");
             currentFishLength.text = addedFishLength.ToString("0");
 
             newFishButton.SetActive(false);
-
+            // When the "New Fish" button is pressed it is turned off...
             eGO.GetComponent<Aquarium>().keepFishButton.SetActive(true);
             eGO.GetComponent<Aquarium>().releaseFishButton.SetActive(true);
+            // ...and turns on the "Keep Fish" and "Release Fish" buttons
 
             eGO.GetComponent<Aquarium>().turn += 1;
             eGO.GetComponent<Aquarium>().turns.text = eGO.GetComponent<Aquarium>().turn.ToString("0");
@@ -163,6 +161,7 @@ namespace MariaTsangaris
         public void PlayAgain()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            // This reloads the scene by pressing the "Play Again" button.
         }
     }
 }

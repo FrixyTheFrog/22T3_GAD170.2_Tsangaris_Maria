@@ -19,6 +19,7 @@ namespace MariaTsangaris
         public TextMeshProUGUI fishName1;
         public TextMeshProUGUI fishValue1;
         public TextMeshProUGUI fishLength1;
+        // These are the texts for the fish kept in the Aquarium
 
         public TextMeshProUGUI fishName2;
         public TextMeshProUGUI fishValue2;
@@ -70,6 +71,7 @@ namespace MariaTsangaris
         public float fishSize8 = 100;
         public float fishSize9 = 100;
         public float fishSize10 = 100;
+        // This fish length start at 100, rather than being defaulted to 0.
 
         public float fishSizeTest2;
         public float fishSizeTest3;
@@ -103,6 +105,7 @@ namespace MariaTsangaris
                 fishLength1.text = eGO.GetComponent<Fish>().currentFishLength.text;
                 int.TryParse(fishValue1.text, out fishScore1);
                 float.TryParse(fishLength1.text, out fishSize1);
+                // This turns the fish value text into an int and the fish length text into a float.
             }
             if (turn == 2)
             {
@@ -118,6 +121,7 @@ namespace MariaTsangaris
                     fishValue1.text = "";
                     fishScore1 = 0;
                     fishLength1.text = "";
+                    // If the fish on the next turn (turn 2) is bigger in size than the previous fish in the aqurium it will blank out the text to "DECEASED" and remove the score.
                 }
             }
             if (turn == 3)
@@ -141,6 +145,7 @@ namespace MariaTsangaris
                     fishValue2.text = "";
                     fishScore2 = 0;
                     fishLength2.text = "";
+                    // Turn 3 will now check if the fish is bigger in size than the rest of the fish in the aquarium.
                 }
             }
             if (turn == 4)
@@ -504,17 +509,21 @@ namespace MariaTsangaris
 
             keepFishButton.SetActive(false);
             releaseFishButton.SetActive(false);
+            // When "keep fish" button is pressed it will turn off the two buttons.
             if (turn < 10)
             {
                 eGO.GetComponent<Fish>().newFishButton.SetActive(true);
+                // If it is before turn 10 the "new fish" button will still appear and be active.
             }
 
             if (turn == 10)
             {
                 gameOver.SetActive(true);
+                // If it is turn 10 the game will end.
 
                 totalScore = totalScore + fishScore1 + fishScore2 + fishScore3 + fishScore4 + fishScore5 + fishScore6 + fishScore7 + fishScore8 + fishScore9 + fishScore10;
                 endScore.text = totalScore.ToString("0");
+                // And will add up the value of all the fish and set it as the total score.
             }
         }
 
@@ -522,6 +531,7 @@ namespace MariaTsangaris
         {
             keepFishButton.SetActive(false);
             releaseFishButton.SetActive(false);
+            // When "release fish" button is pressed it will turn off the two buttons.
             if (turn < 10)
             {
                 eGO.GetComponent<Fish>().newFishButton.SetActive(true);
